@@ -7,6 +7,7 @@ const Alexa = require('ask-sdk-core');
 
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
+        console.log(handlerInput);
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
     },
     handle(handlerInput) {
@@ -35,6 +36,7 @@ const HelloWorldIntentHandler = {
 };
 const WelcomeIntentHandler = {
     canHandle(handlerInput) {
+        console.log(handlerInput);
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'WelcomeIntent';
     },
