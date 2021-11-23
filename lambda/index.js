@@ -4,7 +4,7 @@
  * session persistence, api calls, and more.
  * */
 const Alexa = require('ask-sdk-core');
-const http = require('http');
+const request = require('request');
 
 //Launch Intent
 const LaunchRequestHandler = {
@@ -248,6 +248,10 @@ function httpGet(query, callback) {
         method: 'GET',
     };
 
+request(`${hostname}${path}`, (err,res,body )=>{
+
+  console.log(body);
+})
     var req = http.request(options, res => {
         res.setEncoding('utf8');
         var responseString = "";
