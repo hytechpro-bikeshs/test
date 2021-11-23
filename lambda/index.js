@@ -53,7 +53,7 @@ const WelcomeIntentHandler = {
             .getResponse();
     }
 };
-
+//Get ALL Property Intent
 const GetAllPropertiesIntentHandler = {
     canHandle(handlerInput) {
         console.log(handlerInput);
@@ -69,6 +69,7 @@ const GetAllPropertiesIntentHandler = {
             .getResponse();
     }
 };
+//Get Property Type Intent
 const GetPropertyByTypeIntentHandler = {
     canHandle(handlerInput) {
         console.log(handlerInput);
@@ -84,6 +85,7 @@ const GetPropertyByTypeIntentHandler = {
             .getResponse();
     }
 };
+//Place bid Intent
 const PlaceaBidIntentHandler = {
     canHandle(handlerInput) {
         console.log(handlerInput);
