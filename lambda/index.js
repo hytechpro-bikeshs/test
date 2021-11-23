@@ -5,6 +5,7 @@
  * */
 const Alexa = require('ask-sdk-core');
 
+//Launch Intent
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
         console.log(handlerInput);
@@ -20,6 +21,7 @@ const LaunchRequestHandler = {
     }
 };
 
+//Hello World Intent
 const HelloWorldIntentHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
@@ -34,6 +36,8 @@ const HelloWorldIntentHandler = {
             .getResponse();
     }
 };
+
+//Welcome Intent
 const WelcomeIntentHandler = {
     canHandle(handlerInput) {
         console.log(handlerInput);
@@ -50,6 +54,68 @@ const WelcomeIntentHandler = {
     }
 };
 
+const GetAllPropertiesIntentHandler = {
+    canHandle(handlerInput) {
+        console.log(handlerInput);
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'GetAllPropertiesIntent';
+    },
+    handle(handlerInput) {
+        const speakOutput = 'Welcome in Home Connection HART Partner, Get ALL Property Intent Called';
+
+        return handlerInput.responseBuilder
+            .speak(speakOutput)
+            //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
+            .getResponse();
+    }
+};
+const GetPropertyByTypeIntentHandler = {
+    canHandle(handlerInput) {
+        console.log(handlerInput);
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'GetPropertyByTypeIntent';
+    },
+    handle(handlerInput) {
+        const speakOutput = 'Welcome in Home Connection HART Partner, Get Property By Type Intent Called';
+
+        return handlerInput.responseBuilder
+            .speak(speakOutput)
+            //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
+            .getResponse();
+    }
+};
+const PlaceaBidIntentHandler = {
+    canHandle(handlerInput) {
+        console.log(handlerInput);
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'PlaceaBidIntent';
+    },
+    handle(handlerInput) {
+        const speakOutput = 'Welcome in Home Connection HART Partner, Placea Bid Intent Called';
+
+        return handlerInput.responseBuilder
+            .speak(speakOutput)
+            //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
+            .getResponse();
+    }
+};
+//Withdraw Bid Intent
+const WithdrawBidIntentHandler = {
+    canHandle(handlerInput) {
+        console.log(handlerInput);
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'WithdrawBidIntent';
+    },
+    handle(handlerInput) {
+        const speakOutput = 'Welcome in Home Connection HART Partner, Withdraw Bid Intent Called';
+
+        return handlerInput.responseBuilder
+            .speak(speakOutput)
+            //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
+            .getResponse();
+    }
+};
+//Help Intent
 const HelpIntentHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
@@ -64,7 +130,7 @@ const HelpIntentHandler = {
             .getResponse();
     }
 };
-
+//Cancel or Stop Intent
 const CancelAndStopIntentHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
