@@ -130,7 +130,6 @@ const TestAPICallIntentHandler = {
                 console.log("sent     : " + query);
                 console.log("received : " + theResult);
                 const theFact = theResult;
-                                
                 const speechOutput = theFact;
                 this.response.cardRenderer(theFact);
                 this.response.speak(speechOutput + " Would you like another fact?").listen("Would you like another fact?");
