@@ -1,0 +1,103 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "hart partner",
+      "intents": [
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": [
+            "cancel"
+          ]
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": [
+            "help"
+          ]
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": [
+            "stop"
+          ]
+        },
+        {
+          "name": "HelloWorldIntent",
+          "slots": [],
+          "samples": [
+            "hello",
+            "how are you",
+            "say hi world",
+            "say hi",
+            "hi",
+            "say hello world",
+            "say hello"
+          ]
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": [
+            "navigate"
+          ]
+        },
+        {
+          "name": "AMAZON.FallbackIntent",
+          "samples": [
+            "fallback"
+          ]
+        },
+        {
+          "name": "WelcomeIntent",
+          "slots": [],
+          "samples": [
+            "welcome",
+            "Welcome in Hart Partner"
+          ]
+        },
+        {
+          "name": "GetAllPropertiesIntent",
+          "slots": [],
+          "samples": [
+            "get all hart property",
+            "get all property"
+          ]
+        },
+        {
+          "name": "GetPropertyByTypeIntent",
+          "slots": [],
+          "samples": [
+            "get property by type"
+          ]
+        },
+        {
+          "name": "PlaceaBidIntent",
+          "slots": [],
+          "samples": [
+            "place bid"
+          ]
+        },
+        {
+          "name": "WithdrawBidIntent",
+          "slots": [],
+          "samples": [
+            "withdraw your bid",
+            "withdraw bid"
+          ]
+        },
+        {
+          "name": "TestAPICallIntent",
+          "slots": [],
+          "samples": [
+            "test rest call",
+            "test hart rest api call",
+            "rest api call",
+            "test rest api call",
+            "test api"
+          ]
+        }
+      ],
+      "types": []
+    }
+  },
+  "version": "10"
+}

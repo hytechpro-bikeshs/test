@@ -112,7 +112,7 @@ const WithdrawBidIntentHandler = {
             .getResponse();
     }
 };
-//Withdraw Bid Intent
+//test api call Intent
 const TestAPICallIntentHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
@@ -120,21 +120,15 @@ const TestAPICallIntentHandler = {
     },
     handle(handlerInput) {
         const speakOutput = 'Welcome in Home Connection HART Partner, Test APICall Intent Called';
-        const query=137; //variable
-        //return handlerInput.responseBuilder
-            //.speak(speakOutput)
-            //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
-            //.getResponse();
+        //const query=137; //variable 
+        //   httpGet(query,  (theResult) => { 
+        //       var data=theResult.resources[0].comment;          
+                return handlerInput.responseBuilder
+               .speak(speakOutput)               
+               .reprompt('add a reprompt if you want to keep the session open for the user to respond')
+            .getResponse();
+            //});
             
-             httpGet(query,  (theResult) => {
-                console.log("sent     : " + query);
-                console.log("received : " + theResult);
-                const theFact = theResult;
-                const speechOutput = theFact;
-                this.response.cardRenderer(theFact);
-                this.response.speak(speechOutput + " Would you like another fact?").listen("Would you like another fact?");
-                this.emit(':responseReady');
-            });
     }
 };
 //Help Intent
@@ -285,6 +279,7 @@ exports.handler = Alexa.SkillBuilders.custom()
         GetPropertyByTypeIntentHandler,
         PlaceaBidIntentHandler,
         WithdrawBidIntentHandler,
+        TestAPICallIntentHandler,
         HelpIntentHandler,
         CancelAndStopIntentHandler,
         FallbackIntentHandler,
