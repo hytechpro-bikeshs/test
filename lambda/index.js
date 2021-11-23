@@ -41,7 +41,7 @@ const WelcomeIntentHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'WelcomeIntent';
     },
     handle(handlerInput) {
-        const speakOutput = 'Welcome in Home Connection HART Partner.';
+        const speakOutput = 'Welcome in Home Connection HART Partner';
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
