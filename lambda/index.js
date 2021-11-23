@@ -242,33 +242,35 @@ const ErrorHandler = {
 };
 
 function httpGet(query, callback) {
-    var options = {
-        host: 'https://api.nuget.org/v3/index.json',
-        path: '/' + encodeURIComponent(query),
-        method: 'GET',
-    };
+  //  var options = {
+      //  host: 'https://api.nuget.org/v3/index.json',
+       // path: '/' + encodeURIComponent(query),
+       // method: 'GET',
+   // };
+    const hostname='https://api.nuget.org/v3/index.json';
+    const path='/' + encodeURIComponent(query);
 
-request(`${hostname}${path}`, (err,res,body )=>{
+request('${hostname}${path}', (err,res,body )=>{
 
-  console.log(body);
-})
-    var req = http.request(options, res => {
-        res.setEncoding('utf8');
-        var responseString = "";
+ return body;
+});
+   // var req = http.request(options, res => {
+      //  res.setEncoding('utf8');
+       // var responseString = "";
         
         //accept incoming data asynchronously
-        res.on('data', chunk => {
-            responseString = responseString + chunk;
-        });
+       // res.on('data', chunk => {
+        //    responseString = responseString + chunk;
+        //});
         
         //return the data when streaming is complete
-        res.on('end', () => {
-            console.log(responseString);
-            callback(responseString);
-        });
+        //res.on('end', () => {
+        //    console.log(responseString);
+          //  callback(responseString);
+       // });
 
-    });
-    req.end();
+   // });
+   // req.end();
 }
 /**
  * This handler acts as the entry point for your skill, routing all request and response
