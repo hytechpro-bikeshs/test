@@ -33,6 +33,20 @@ const HelloWorldIntentHandler = {
             .getResponse();
     }
 };
+const WelcomeIntentHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'WelcomeIntent';
+    },
+    handle(handlerInput) {
+        const speakOutput = 'Welcome in Home Connection HART Partner.';
+
+        return handlerInput.responseBuilder
+            .speak(speakOutput)
+            //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
+            .getResponse();
+    }
+};
 
 const HelpIntentHandler = {
     canHandle(handlerInput) {
