@@ -243,7 +243,7 @@ const ErrorHandler = {
 
 function httpGet(query, callback) {
     var options = {
-        host: 'numbersapi.com',
+        host: 'https://api.nuget.org/v3/index.json',
         path: '/' + encodeURIComponent(query),
         method: 'GET',
     };
