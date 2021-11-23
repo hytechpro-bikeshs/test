@@ -4,6 +4,7 @@
  * session persistence, api calls, and more.
  * */
 const Alexa = require('ask-sdk-core');
+const http = require('http');
 
 //Launch Intent
 const LaunchRequestHandler = {
@@ -111,6 +112,32 @@ const WithdrawBidIntentHandler = {
             .getResponse();
     }
 };
+//Withdraw Bid Intent
+const TestAPICallIntentHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'TestAPICallIntent';
+    },
+    handle(handlerInput) {
+        const speakOutput = 'Welcome in Home Connection HART Partner, Test APICall Intent Called';
+        const query=137; //variable
+        //return handlerInput.responseBuilder
+            //.speak(speakOutput)
+            //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
+            //.getResponse();
+            
+             httpGet(query,  (theResult) => {
+                console.log("sent     : " + query);
+                console.log("received : " + theResult);
+                const theFact = theResult;
+                                
+                const speechOutput = theFact;
+                this.response.cardRenderer(theFact);
+                this.response.speak(speechOutput + " Would you like another fact?").listen("Would you like another fact?");
+                this.emit(':responseReady');
+            });
+    }
+};
 //Help Intent
 const HelpIntentHandler = {
     canHandle(handlerInput) {
@@ -214,6 +241,31 @@ const ErrorHandler = {
     }
 };
 
+function httpGet(query, callback) {
+    var options = {
+        host: 'numbersapi.com',
+        path: '/' + encodeURIComponent(query),
+        method: 'GET',
+    };
+
+    var req = http.request(options, res => {
+        res.setEncoding('utf8');
+        var responseString = "";
+        
+        //accept incoming data asynchronously
+        res.on('data', chunk => {
+            responseString = responseString + chunk;
+        });
+        
+        //return the data when streaming is complete
+        res.on('end', () => {
+            console.log(responseString);
+            callback(responseString);
+        });
+
+    });
+    req.end();
+}
 /**
  * This handler acts as the entry point for your skill, routing all request and response
  * payloads to the handlers above. Make sure any new handlers or interceptors you've
