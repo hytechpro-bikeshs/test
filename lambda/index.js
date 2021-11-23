@@ -8,7 +8,6 @@ const Alexa = require('ask-sdk-core');
 //Launch Intent
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
-        console.log(handlerInput);
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
     },
     handle(handlerInput) {
@@ -40,7 +39,6 @@ const HelloWorldIntentHandler = {
 //Welcome Intent
 const WelcomeIntentHandler = {
     canHandle(handlerInput) {
-        console.log(handlerInput);
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'WelcomeIntent';
     },
@@ -56,7 +54,6 @@ const WelcomeIntentHandler = {
 //Get ALL Property Intent
 const GetAllPropertiesIntentHandler = {
     canHandle(handlerInput) {
-        console.log(handlerInput);
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'GetAllPropertiesIntent';
     },
@@ -72,7 +69,6 @@ const GetAllPropertiesIntentHandler = {
 //Get Property Type Intent
 const GetPropertyByTypeIntentHandler = {
     canHandle(handlerInput) {
-        console.log(handlerInput);
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'GetPropertyByTypeIntent';
     },
@@ -88,7 +84,6 @@ const GetPropertyByTypeIntentHandler = {
 //Place bid Intent
 const PlaceaBidIntentHandler = {
     canHandle(handlerInput) {
-        console.log(handlerInput);
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'PlaceaBidIntent';
     },
@@ -104,7 +99,6 @@ const PlaceaBidIntentHandler = {
 //Withdraw Bid Intent
 const WithdrawBidIntentHandler = {
     canHandle(handlerInput) {
-        console.log(handlerInput);
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'WithdrawBidIntent';
     },
