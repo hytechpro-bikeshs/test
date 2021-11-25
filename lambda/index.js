@@ -4,7 +4,8 @@
  * session persistence, api calls, and more.
  * */
 const Alexa = require('ask-sdk-core');
-const http = require('http');
+const https = require('https');
+const axios = require('axios');
 
 //Launch Intent
 const LaunchRequestHandler = {
@@ -119,16 +120,16 @@ const TestAPICallIntentHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'TestAPICallIntent';
     },
     handle(handlerInput) {
-        const speakOutput = 'Welcome in Home Connection HART Partner, Test APICall Intent Called';
-        const query = 137; //variable 
-        callAPI(query, (theResult) => {
+        const speakOutput = 'Welcome in Home Connection HART Partner, Test APICall Intent Called.';
+        //const query = 137; //variable 
+       //var data= getAPIData();
             //var data = theResult.resources[0].comment;
-            //speakOutput + ' data: ' + data;
+            //speakOutput + ' value is ' + data;
             return handlerInput.responseBuilder
                 .speak(speakOutput)
                 //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
                 .getResponse();
-        });
+        //});       
     }
 };
 //Help Intent
@@ -236,24 +237,25 @@ const ErrorHandler = {
 
 function callAPI(params, callback) {
     console.log('In callAPI, params: ' + params);
-      var options = {
+    var options = {
         method: 'GET',
         host: 'https://api.nuget.org/v3/index.json',
         path: '/' + params,
         headers: {
-          'accept': 'application/json',
+            'accept': 'application/json',
         }
-      };
-      var dataStr = "";
-      const req = http.request(options, function (response) {
+    };
+    var dataStr = "";
+    const req = http.request(options, function (response) {
         response.on('data', data => dataStr += data);
         response.on('end', () => callback(JSON.parse(dataStr)));
-      }).on('error', err => // handle error
-      {
+    }).on('error', err => // handle error
+    {
         alert('error');
-      });
-      req.end();
-  }
+    });
+    req.end();
+}
+//module.exports = callAPI;
 /**
  * This handler acts as the entry point for your skill, routing all request and response
  * payloads to the handlers above. Make sure any new handlers or interceptors you've
@@ -279,3 +281,9 @@ exports.handler = Alexa.SkillBuilders.custom()
         ErrorHandler)
     .withCustomUserAgent('sample/hello-world/v1.2')
     .lambda();
+
+async function getAPIData() {
+    const response = await axios.get('https://jsonplaceholder.typicode.com/albums');
+    return response.data[0].title;
+}
+module.exports = TestAPICallIntentHandler;
