@@ -4,6 +4,7 @@
  * session persistence, api calls, and more.
  * */
 const Alexa = require('ask-sdk-core');
+const axios = require('axios');
 //Launch Intent
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
@@ -110,6 +111,11 @@ const WithdrawBidIntentHandler = {
             .getResponse();
     }
 };
+async function getAPIData() {
+    const response = await axios.get('https://jsonplaceholder.typicode.com/albums');
+    return response.data[0].title;
+}
+module.exports = getAPIData;
 //test api call Intent
 const TestAPICallIntentHandler = {
     canHandle(handlerInput) {
@@ -117,7 +123,8 @@ const TestAPICallIntentHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'TestAPICallIntent';
     },
     handle(handlerInput) {
-        const speakOutput = 'Welcome in Home Connection HART Partner, Test APICall Intent Called.';       
+        var data= getAPIData();
+        const speakOutput = 'Welcome in Home Connection HART Partner, Test API Call Intent Called.'+data;       
             return handlerInput.responseBuilder
                 .speak(speakOutput)
                 //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
