@@ -4,7 +4,7 @@
  * session persistence, api calls, and more.
  * */
 const Alexa = require('ask-sdk-core');
-const request = require('request');
+const http = require('http');
 
 //Launch Intent
 const LaunchRequestHandler = {
@@ -121,15 +121,14 @@ const TestAPICallIntentHandler = {
     handle(handlerInput) {
         const speakOutput = 'Welcome in Home Connection HART Partner, Test APICall Intent Called';
         const query = 137; //variable 
-        httpGet(query, (theResult) => {
-            var data = theResult.resources[0].comment;
-            speakOutput + ' data: ' + data;
+        callAPI(query, (theResult) => {
+            //var data = theResult.resources[0].comment;
+            //speakOutput + ' data: ' + data;
             return handlerInput.responseBuilder
                 .speak(speakOutput)
                 //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
                 .getResponse();
         });
-
     }
 };
 //Help Intent
@@ -235,37 +234,26 @@ const ErrorHandler = {
     }
 };
 
-function httpGet(query, callback) {
-    //  var options = {
-    //  host: 'https://api.nuget.org/v3/index.json',
-    // path: '/' + encodeURIComponent(query),
-    // method: 'GET',
-    // };
-    const hostname = 'https://api.nuget.org/v3/index.json';
-    const path = '/' + encodeURIComponent(query);
-
-    request('${hostname}${path}', (err, res, body) => {
-
-        return body;
-    });
-    // var req = http.request(options, res => {
-    //  res.setEncoding('utf8');
-    // var responseString = "";
-
-    //accept incoming data asynchronously
-    // res.on('data', chunk => {
-    //    responseString = responseString + chunk;
-    //});
-
-    //return the data when streaming is complete
-    //res.on('end', () => {
-    //    console.log(responseString);
-    //  callback(responseString);
-    // });
-
-    // });
-    // req.end();
-}
+function callAPI(params, callback) {
+    console.log('In callAPI, params: ' + params);
+      var options = {
+        method: 'GET',
+        host: 'https://api.nuget.org/v3/index.json',
+        path: '/' + params,
+        headers: {
+          'accept': 'application/json',
+        }
+      };
+      var dataStr = "";
+      const req = http.request(options, function (response) {
+        response.on('data', data => dataStr += data);
+        response.on('end', () => callback(JSON.parse(dataStr)));
+      }).on('error', err => // handle error
+      {
+        alert('error');
+      });
+      req.end();
+  }
 /**
  * This handler acts as the entry point for your skill, routing all request and response
  * payloads to the handlers above. Make sure any new handlers or interceptors you've
