@@ -235,26 +235,7 @@ const ErrorHandler = {
     }
 };
 
-function callAPI(params, callback) {
-    console.log('In callAPI, params: ' + params);
-    var options = {
-        method: 'GET',
-        host: 'https://api.nuget.org/v3/index.json',
-        path: '/' + params,
-        headers: {
-            'accept': 'application/json',
-        }
-    };
-    var dataStr = "";
-    const req = http.request(options, function (response) {
-        response.on('data', data => dataStr += data);
-        response.on('end', () => callback(JSON.parse(dataStr)));
-    }).on('error', err => // handle error
-    {
-        alert('error');
-    });
-    req.end();
-}
+
 //module.exports = callAPI;
 /**
  * This handler acts as the entry point for your skill, routing all request and response
