@@ -123,8 +123,8 @@ const TestAPICallIntentHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'TestAPICallIntent';
     },
     handle(handlerInput) {
-        var data= getAPIData();
-        const speakOutput = 'Welcome in Home Connection HART Partner, Test API Call Intent Called.'+data;       
+        var data= await getAPIData();
+        const speakOutput = 'Welcome in Home Connection HART Partner, Test API Call Intent Called.';       
             return handlerInput.responseBuilder
                 .speak(speakOutput)
                 //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
