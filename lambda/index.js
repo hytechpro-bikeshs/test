@@ -115,7 +115,7 @@ async function getAPIData() {
     const response = await axios.get('https://jsonplaceholder.typicode.com/albums');
     return response.data[0].title;
 }
-module.exports = getAPIData;
+//module.exports = getAPIData;
 //test api call Intent
 const TestAPICallIntentHandler = {
     canHandle(handlerInput) {
