@@ -123,7 +123,7 @@ const TestAPICallIntentHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'TestAPICallIntent';
     },
     handle(handlerInput) {
-        var data= getAPIData();
+        var data=getAPIData();
         if(data !==null && data !==undefined && data !=='')
         {   const speakOutput = 'Welcome in Home Connection HART Partner, Test API Call Intent Called. API Called and data recieved';       
             return handlerInput.responseBuilder
