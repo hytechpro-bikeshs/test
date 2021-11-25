@@ -124,11 +124,13 @@ const TestAPICallIntentHandler = {
     },
     handle(handlerInput) {
         var data= getAPIData();
-        const speakOutput = 'Welcome in Home Connection HART Partner, Test API Call Intent Called.';       
+        if(data !==null && data !==undefined && data !=='')
+        {        const speakOutput = 'Welcome in Home Connection HART Partner, Test API Call Intent Called.';       
             return handlerInput.responseBuilder
                 .speak(speakOutput)
                 //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
-                .getResponse();              
+                .getResponse(); 
+        }
     }
 };
 //Help Intent
