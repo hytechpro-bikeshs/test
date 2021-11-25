@@ -226,7 +226,6 @@ const ErrorHandler = {
             .getResponse();
     }
 };
-
 /**
  * This handler acts as the entry point for your skill, routing all request and response
  * payloads to the handlers above. Make sure any new handlers or interceptors you've
