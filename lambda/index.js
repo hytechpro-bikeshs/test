@@ -120,15 +120,16 @@ const TestAPICallIntentHandler = {
     },
     handle(handlerInput) {
         const speakOutput = 'Welcome in Home Connection HART Partner, Test APICall Intent Called';
-        //const query=137; //variable 
-        //   httpGet(query,  (theResult) => { 
-        //       var data=theResult.resources[0].comment;          
-                return handlerInput.responseBuilder
-               .speak(speakOutput)               
-               .reprompt('add a reprompt if you want to keep the session open for the user to respond')
-            .getResponse();
-            //});
-            
+        const query = 137; //variable 
+        httpGet(query, (theResult) => {
+            var data = theResult.resources[0].comment;
+            speakOutput + ' data: ' + data;
+            return handlerInput.responseBuilder
+                .speak(speakOutput)
+                //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
+                .getResponse();
+        });
+
     }
 };
 //Help Intent
@@ -235,35 +236,35 @@ const ErrorHandler = {
 };
 
 function httpGet(query, callback) {
-  //  var options = {
-      //  host: 'https://api.nuget.org/v3/index.json',
-       // path: '/' + encodeURIComponent(query),
-       // method: 'GET',
-   // };
-    const hostname='https://api.nuget.org/v3/index.json';
-    const path='/' + encodeURIComponent(query);
+    //  var options = {
+    //  host: 'https://api.nuget.org/v3/index.json',
+    // path: '/' + encodeURIComponent(query),
+    // method: 'GET',
+    // };
+    const hostname = 'https://api.nuget.org/v3/index.json';
+    const path = '/' + encodeURIComponent(query);
 
-request('${hostname}${path}', (err,res,body )=>{
+    request('${hostname}${path}', (err, res, body) => {
 
- return body;
-});
-   // var req = http.request(options, res => {
-      //  res.setEncoding('utf8');
-       // var responseString = "";
-        
-        //accept incoming data asynchronously
-       // res.on('data', chunk => {
-        //    responseString = responseString + chunk;
-        //});
-        
-        //return the data when streaming is complete
-        //res.on('end', () => {
-        //    console.log(responseString);
-          //  callback(responseString);
-       // });
+        return body;
+    });
+    // var req = http.request(options, res => {
+    //  res.setEncoding('utf8');
+    // var responseString = "";
 
-   // });
-   // req.end();
+    //accept incoming data asynchronously
+    // res.on('data', chunk => {
+    //    responseString = responseString + chunk;
+    //});
+
+    //return the data when streaming is complete
+    //res.on('end', () => {
+    //    console.log(responseString);
+    //  callback(responseString);
+    // });
+
+    // });
+    // req.end();
 }
 /**
  * This handler acts as the entry point for your skill, routing all request and response
@@ -285,7 +286,7 @@ exports.handler = Alexa.SkillBuilders.custom()
         FallbackIntentHandler,
         SessionEndedRequestHandler,
         IntentReflectorHandler
-        )
+    )
     .addErrorHandlers(
         ErrorHandler)
     .withCustomUserAgent('sample/hello-world/v1.2')
