@@ -125,7 +125,7 @@ const TestAPICallIntentHandler = {
     handle(handlerInput) {
         var data=getAPIData();
         if(data !==null && data !==undefined && data !=='')
-        {   const speakOutput = 'Welcome in Home Connection HART Partner, Test API Call Intent Called. API Called and data recieved ${currentSlot.name}';       
+        {   const speakOutput = 'Welcome in Home Connection HART Partner, Test API Call Intent Called. API Called and data recieved ${data}';       
             return handlerInput.responseBuilder
                 .speak(speakOutput)
                 //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
