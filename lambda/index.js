@@ -112,9 +112,13 @@ const WithdrawBidIntentHandler = {
     }
 };
 async function getAPIData() {
- await axios.get('https://jsonplaceholder.typicode.com/albums').then(function (response) {
-    return response.data[0].title; 
+    const response = await axios.get('https://jsonplaceholder.typicode.com/albums');
+    response.then(response => {
+  return response.json();
+  }).then(people => {
+  console.log(people);
   });
+   // return response.data[0].title;
 }
 //module.exports = getAPIData;
 //test api call Intent
@@ -124,7 +128,7 @@ const TestAPICallIntentHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'TestAPICallIntent';
     },
     handle(handlerInput) {
-        var data=Promise.resolve(getAPIData());
+        var data=getAPIData();
         if(data !==null && data !==undefined && data !=='')
         {   const speakOutput = 'Welcome in Home Connection HART Partner, Test API Call Intent Called. API Called and data recieved.'+data;      
             return handlerInput.responseBuilder
