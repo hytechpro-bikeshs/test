@@ -113,7 +113,7 @@ const WithdrawBidIntentHandler = {
 };
 async function getAPIData() {
     const response = await axios.get('https://api.nuget.org/v3/index.json');
-    return response.data[0].title;
+    return response.data.resources[0].comment;
 }
 //module.exports = getAPIData;
 //test api call Intent
