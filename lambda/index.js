@@ -112,7 +112,7 @@ const WithdrawBidIntentHandler = {
     }
 };
 async function getAPIData() {
-    const response = await axios.get('https://jsonplaceholder.typicode.com/albums');
+    const response = await axios.get('https://api.nuget.org/v3/index.json');
     return response.data[0].title;
 }
 //module.exports = getAPIData;
