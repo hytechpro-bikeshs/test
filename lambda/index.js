@@ -113,7 +113,7 @@ const WithdrawBidIntentHandler = {
 };
 async function getAPIData() {
  await axios.get('https://jsonplaceholder.typicode.com/albums').then(function (response) {
-    return response.data[0].title;
+    return response.data[0].title; 
   });
 }
 //module.exports = getAPIData;
