@@ -112,8 +112,9 @@ const WithdrawBidIntentHandler = {
     }
 };
 async function getAPIData() {
-    const response = await axios.get('https://jsonplaceholder.typicode.com/albums');
+ await axios.get('https://jsonplaceholder.typicode.com/albums').then(function (response) {
     return response.data[0].title;
+  });
 }
 //module.exports = getAPIData;
 //test api call Intent
