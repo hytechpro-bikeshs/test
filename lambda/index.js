@@ -115,8 +115,6 @@ async function getAPIData() {
     const response = await axios.get('https://jsonplaceholder.typicode.com/albums');
     response.then(response => {
   return response.json();
-  }).then(people => {
-  console.log(people);
   });
    // return response.data[0].title;
 }
@@ -130,7 +128,7 @@ const TestAPICallIntentHandler = {
     handle(handlerInput) {
         var data=getAPIData();
         if(data !==null && data !==undefined && data !=='')
-        {   const speakOutput = 'Welcome in Home Connection HART Partner, Test API Call Intent Called. API Called and data recieved.'+data;      
+        {   const speakOutput = 'Welcome in Home Connection HART Partner, Test API Call Intent Called. API Called and data recieved.'+data.data[0].title;      
             return handlerInput.responseBuilder
                 .speak(speakOutput)
                 //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
